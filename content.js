@@ -37,6 +37,8 @@
 		recordings_wrapper.innerHTML = newContent + recordings_wrapper.innerHTML
 	}
 	
+
+	var index
 	function createTable(){
 		const length = recordings.children[1].children.length
 		for(let i=length-1;i>=0;i--){
@@ -57,16 +59,17 @@
 					<td style="border:1px solid black;"><b>Sunday</b></td>
 				</tr>
 				`
-				for(let i=0;i<length;i++){
+				index=0
+				while(index<length){
 					table+=`
 					<tr>
-						${createDayBlock(1,i)}
-						${createDayBlock(2,i)}
-						${createDayBlock(3,i)}
-						${createDayBlock(4,i)}
-						${createDayBlock(5,i)}
-						${createDayBlock(6,i)}
-						${createDayBlock(0,i)}
+						${createDayBlock(1,length)}
+						${createDayBlock(2,length)}
+						${createDayBlock(3,length)}
+						${createDayBlock(4,length)}
+						${createDayBlock(5,length)}
+						${createDayBlock(6,length)}
+						${createDayBlock(0,length)}
 					</tr>
 					`
 				}
@@ -77,11 +80,17 @@
 		return table
 	}
 	
-	function createDayBlock(day,i){
+	function createDayBlock(day,length){
 		// 0 - Sunday, 1 - monday, 6 - saturday
 		var dayBlock = `<td style="border: 1px solid black;width:14%;">`
-		if(allLectureData[i][1]===day){
-			dayBlock+=createLectureBlock(allLectureData[i])
+		if(allLectureData[index]!== undefined){
+			while(allLectureData[index][1]===day){
+				dayBlock+=createLectureBlock(allLectureData[index])
+				index++
+				if(index === length){
+					break
+				}
+			}
 		}
 		dayBlock+=`</td>`
 		
