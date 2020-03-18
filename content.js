@@ -72,7 +72,7 @@
 	
 	function createDayBlock(day,i){
 		// 0 - Sunday, 1 - monday, 6 - saturday
-		var dayBlock = `<td style="border: 1px solid black;width:14%;display:inline-block;">$`
+		var dayBlock = `<td style="border: 1px solid black;width:14%;">`
 		if(allLectureData[i][1]===day){
 			dayBlock+=createLectureBlock(allLectureData[i])
 		}
