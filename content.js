@@ -28,7 +28,6 @@
 	function onRecordingPage(){
 		if(location.includes('ltr')){
 			modiySite(createTable())
-			modiySite('<h1>'+getName(0)+','+getDay(0)+','+getWeek(0)+','+getWatch(0)+','+getDownload(0)+'</h1>')
 		}
 	}
 	
@@ -44,6 +43,7 @@
 			allLectureData[i] = getLectureData(i)
 		}
 		var table = `
+			<h1>${getClass(0)}</h1>
 			<table style="border:1px solid black;border-collapse:collapse;width:100%;">
 				<tbody>
 
@@ -90,8 +90,9 @@
 	
 	function createLectureBlock(lectureData){
 		return `<div style="display:inline-block">
-		<p>${lectureData[0]}</p>
-		<p>${lectureData[2]}</p>
+		<p style="margin:0">${lectureData[0]}</p>
+		<p style="margin:0"><b>W</b> ${lectureData[2]}</p>
+		<p style="margin:0">${lectureData[5]}</p>
 		</div>`
 	}
 	
@@ -100,7 +101,7 @@
 	
 	function getLectureData(i){
 		// name 
-		return [getName(i),getDay(i),getWeek(i),getWatch(i),getDownload(i)]
+		return [getName(i),getDay(i),getWeek(i),getWatch(i),getDownload(i),getTime(i)]
 	}
 	
 	function getName(i){
@@ -111,8 +112,14 @@
 		const realDate = new Date(rawDate.substr(3,2)+-+rawDate.substr(0,2)+-+rawDate.substr(6,4))
 		return realDate
 	}
+	function getTime(i){
+		return recordings.children[1].children[i].children[2].innerText.split(" ")[1]
+	}
 	function getDay(i){
 		return getDate(i).getDay()
+	}
+	function getClass(i){
+		return recordings.children[1].children[i].children[4].innerText.replace(/Lecture(.*)/,'')
 	}
 	function getWeek(i){
 		const diff = getDate(i) - startDate
