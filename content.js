@@ -44,8 +44,18 @@
 			allLectureData[i] = getLectureData(i)
 		}
 		var table = `
-			<table style="border:1px solid black;border-collapse:collapse;width:100%;"> 
+			<table style="border:1px solid black;border-collapse:collapse;width:100%;">
 				<tbody>
+
+				<tr>
+					<td style="border:1px solid black;"><b>Monday</b></td>
+					<td style="border:1px solid black;"><b>Tuesday</b></td>
+					<td style="border:1px solid black;"><b>Wednesday</b></td>
+					<td style="border:1px solid black;"><b>Thursday</b></td>
+					<td style="border:1px solid black;"><b>Friday</b></td>
+					<td style="border:1px solid black;"><b>Saturday</b></td>
+					<td style="border:1px solid black;"><b>Sunday</b></td>
+				</tr>
 				`
 				for(let i=0;i<length;i++){
 					table+=`
