@@ -10,7 +10,7 @@
 	const startDate = new Date('03-2-2020')
 	
 	// ###################
-	// 
+	//	When extension button pressed
 	// ###################
 	chrome.runtime.onMessage.addListener(req=>{
 		const startLength = location.match('courses/').index+8
@@ -21,24 +21,23 @@
 	
 	
 	// ######################
-	//		RECORDING PAGE  (external site)
+	//		RECORDINGS PAGE  (external site)
 	// ######################
-	onRecordingPage()
-	function onRecordingPage(){
+	window.addEventListener("load",e=>{
 		if(location.includes('ltr')){
-			modiySite(createTable())
+			onRecordingPage()
 		}
+	})
+
+	function onRecordingPage(){
+		modiySite(createTable())
 	}
-	
 	
 	function modiySite(newContent){
 		let recordings_wrapper = document.getElementById('recordings_wrapper')
 		recordings_wrapper.innerHTML = newContent + recordings_wrapper.innerHTML
 	}
 	
-
-	var index
-	var currentWeek
 	function createTable(){
 		const allLectureData = new Array(getWeek(0)).fill(0).map(e=>new Array(7).fill(0).map(e=>new Array()))
 		const length = recordings.children[1].children.length
@@ -46,9 +45,6 @@
 			const lectureData = getLectureData(i)
 			const week = lectureData[2]-1
 			const day = lectureData[1]
-			console.log(allLectureData)
-			console.log(week)
-			console.log(day)
 			allLectureData[week][day].push(lectureData)
 		}
 		var table = `
@@ -83,7 +79,6 @@
 	}
 	
 	function createDayBlock(lectureDataList,day){
-		console.log(lectureDataList)
 		// 0 - Sunday, 1 - monday, 6 - saturday
 		var dayBlock = `<td style="border: 1px solid black;width:`
 		if(day===0 || day===6){
@@ -129,12 +124,14 @@
 		return recordings.children[1].children[i].children[2].innerText.split(" ")[1]
 	}
 	function getDay(i){
+		// return: 0 - sunday, 1 - monday, 6 - saturday
 		return getDate(i).getDay()
 	}
 	function getClass(i){
 		return recordings.children[1].children[i].children[4].innerText.replace(/Lecture(.*)/,'')
 	}
 	function getWeek(i){
+		// return: 1 - for the first week, 2 - for the second week. NOT zero indexed
 		const diff = getDate(i) - startDate
 		const days = diff/1000/60/60/24
 		return Math.floor(days/7) + 1
