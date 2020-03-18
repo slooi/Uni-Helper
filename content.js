@@ -8,7 +8,6 @@
 	
 	const location = window.location.href
 	const startDate = new Date('03-2-2020')
-	const allLectureData = []
 	
 	// ###################
 	// 
@@ -41,9 +40,16 @@
 	var index
 	var currentWeek
 	function createTable(){
+		const allLectureData = new Array(getWeek(0)).fill(0).map(e=>new Array(7).fill(0).map(e=>new Array()))
 		const length = recordings.children[1].children.length
 		for(let i=length-1;i>=0;i--){
-			allLectureData[i] = getLectureData(i)
+			const lectureData = getLectureData(i)
+			const week = lectureData[2]-1
+			const day = lectureData[1]
+			console.log(allLectureData)
+			console.log(week)
+			console.log(day)
+			allLectureData[week][day].push(lectureData)
 		}
 		var table = `
 			<h1>${getClass(0)}</h1>
@@ -51,6 +57,7 @@
 				<tbody>
 
 				<tr>
+					<td style="border:1px solid black;"><b></b></td>
 					<td style="border:1px solid black;"><b>Monday</b></td>
 					<td style="border:1px solid black;"><b>Tuesday</b></td>
 					<td style="border:1px solid black;"><b>Wednesday</b></td>
@@ -60,25 +67,13 @@
 					<td style="border:1px solid black;"><b>Sunday</b></td>
 				</tr>
 				`
-				index=0
-				currentWeek = getWeek(index)
-				while(index<length){
-					table+=`
-					<tr>
-						${createDayBlock(1,length)}
-						${createDayBlock(2,length)}
-						${createDayBlock(3,length)}
-						${createDayBlock(4,length)}
-						${createDayBlock(5,length)}
-						${createDayBlock(6,length)}
-						${createDayBlock(0,length)}
-					</tr>
-					`
-					if(allLectureData[index]!== undefined){
-						if(currentWeek !== getWeek(index)){
-							currentWeek = getWeek(index)
-						}
+				for(let i=allLectureData.length-1;i>=0;i--){
+					table+=`<tr><td style="border: 1px solid black;width:3%">Week ${i}</td>`
+					for(let j=1;j<7;j++){
+						table+=createDayBlock(allLectureData[i][j],j)
 					}
+					table+=createDayBlock(allLectureData[i][0],0)
+					table+=`</tr>`
 				}
 				table+=	`
 				</tbody>
@@ -87,19 +82,18 @@
 		return table
 	}
 	
-	function createDayBlock(day,length){
+	function createDayBlock(lectureDataList,day){
+		console.log(lectureDataList)
 		// 0 - Sunday, 1 - monday, 6 - saturday
-		var dayBlock = `<td style="border: 1px solid black;width:14%;">`
-		if(allLectureData[index]!== undefined){
-			if(currentWeek === getWeek(index)){
-				while(allLectureData[index][1]===day){
-					dayBlock+=createLectureBlock(allLectureData[index])
-					index++
-					if(index === length){
-						break
-					}
-				}
-			}
+		var dayBlock = `<td style="border: 1px solid black;width:`
+		if(day===0 || day===6){
+			dayBlock += `1%;">`
+		}else{
+			dayBlock += `14%;">`
+		}
+		
+		for(let i=0;i<lectureDataList.length;i++){
+			dayBlock+=createLectureBlock(lectureDataList[i])
 		}
 		dayBlock+=`</td>`
 		
