@@ -13,6 +13,6 @@
 	],
 	"browser_action":{
 		"default_popup":"popup.html",
-		"default_title":"Bear"
+		"default_title":"Uni Helper"
 	}
 }
