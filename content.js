@@ -64,7 +64,7 @@
 				</tr>
 				`
 				for(let i=allLectureData.length-1;i>=0;i--){
-					table+=`<tr><td style="border: 1px solid black;width:3%">Week ${i}</td>`
+					table+=`<tr><td style="border: 1px solid black;width:3%">Week ${i+1}</td>`
 					for(let j=1;j<7;j++){
 						table+=createDayBlock(allLectureData[i][j],j)
 					}
