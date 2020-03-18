@@ -7,7 +7,6 @@
 	// ###################
 	
 	const location = window.location.href
-	const recordingsHTML = recordings.children[1].children
 	const startDate = new Date('03-2-2020')
 	const allLectureData = []
 	
@@ -15,11 +14,9 @@
 	// 
 	// ###################
 	chrome.runtime.onMessage.addListener(req=>{
-		modiySite('<h1>ASKDJLASKJAKLSDJLAKJSD</h1>')
 		const startLength = location.match('courses/').index+8
 		const linkNumber = location.substr(startLength,5)
 		const videoPageHref = location.replace('canvas','learningtools').replace(/courses(.*)/,`ltr/home/index/${linkNumber}`)
-		alert(videoPageHref)
 		window.location=videoPageHref
 	})
 	
@@ -42,7 +39,7 @@
 	}
 	
 	function createTable(){
-		const length = recordingsHTML.length
+		const length = recordings.children[1].children.length
 		for(let i=length-1;i>=0;i--){
 			allLectureData[i] = getLectureData(i)
 		}
@@ -83,7 +80,8 @@
 	
 	function createLectureBlock(lectureData){
 		return `<div style="display:inline-block">
-			<p>${lectureData[0]}</p>
+		<p>${lectureData[0]}</p>
+		<p>${lectureData[2]}</p>
 		</div>`
 	}
 	
@@ -119,8 +117,3 @@
 	}
 	
 	})()
-	
-	
-	new Date(recordings.children[1].children[0].children[2].innerText.split(" ")[0])
-	
-	new Date(recordings.children[1].children[7].children[2].innerText.split(" ")[0])
