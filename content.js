@@ -75,7 +75,9 @@
 					</tr>
 					`
 					if(allLectureData[index]!== undefined){
-						currentWeek = getWeek(index)
+						if(currentWeek !== getWeek(index)){
+							currentWeek = getWeek(index)
+						}
 					}
 				}
 				table+=	`
@@ -107,7 +109,7 @@
 	function createLectureBlock(lectureData){
 		return `<div style="display:inline-block">
 		<p style="margin:0"><a href="${lectureData[4]}">${lectureData[0]}</a></p>
-		<p style="margin:0"><b>W</b> ${lectureData[2]}</p>
+		<p style="margin:0"><b>W</b> ${lectureData[2]} <b>D</b> ${lectureData[1]}</p>
 		<p style="margin:0">${lectureData[5]}</p>
 		<p style="margin:0">download | <a href="${lectureData[3]}"> watch</a></p>
 		</div>`
