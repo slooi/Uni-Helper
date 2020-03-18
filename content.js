@@ -39,6 +39,7 @@
 	
 
 	var index
+	var currentWeek
 	function createTable(){
 		const length = recordings.children[1].children.length
 		for(let i=length-1;i>=0;i--){
@@ -60,6 +61,7 @@
 				</tr>
 				`
 				index=0
+				currentWeek = getWeek(index)
 				while(index<length){
 					table+=`
 					<tr>
@@ -72,6 +74,9 @@
 						${createDayBlock(0,length)}
 					</tr>
 					`
+					if(allLectureData[index]!== undefined){
+						currentWeek = getWeek(index)
+					}
 				}
 				table+=	`
 				</tbody>
@@ -84,11 +89,13 @@
 		// 0 - Sunday, 1 - monday, 6 - saturday
 		var dayBlock = `<td style="border: 1px solid black;width:14%;">`
 		if(allLectureData[index]!== undefined){
-			while(allLectureData[index][1]===day){
-				dayBlock+=createLectureBlock(allLectureData[index])
-				index++
-				if(index === length){
-					break
+			if(currentWeek === getWeek(index)){
+				while(allLectureData[index][1]===day){
+					dayBlock+=createLectureBlock(allLectureData[index])
+					index++
+					if(index === length){
+						break
+					}
 				}
 			}
 		}
