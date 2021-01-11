@@ -7,7 +7,7 @@
 	// ###################
 	
 	const location = window.location.href
-	const startDate = new Date('03-2-2020')
+	const startDate = new Date('01-6-2020')	//!@#!@#!@# CHANGE THIS WHENEVER YOU START A NEW SEMESTER!!!
 	
 	// ###################
 	//	When extension button pressed
@@ -116,7 +116,7 @@
 		return recordings.children[1].children[i].children[1].innerText
 	}
 	function getDate(i){
-		const rawDate = recordings.children[1].children[i].children[2].innerText.split(" ")[0]
+		const rawDate = recordings.children[1].children[i].children[1].innerText.split(" ")[0]
 		const realDate = new Date(rawDate.substr(3,2)+-+rawDate.substr(0,2)+-+rawDate.substr(6,4))
 		return realDate
 	}
@@ -137,10 +137,16 @@
 		return Math.floor(days/7) + 1
 	}
 	function getWatch(i){
-		return recordings.children[1].children[i].children[5].children[0].href
+		// This is the preview video href
+		// Example: https://mediastore.auckland.ac.nz/2021/1210/COMPSCI130L01C/1581611/1b0d6a/202101081000.LT347592.REV1.preview
+		return recordings.children[1].children[1].children[0].children[0].href
+
 	}
 	function getDownload(i){
-		return recordings.children[1].children[i].children[5].children[3].children[0].href
+		// This is the download href
+		// Example: https://mediastore.auckland.ac.nz/2021/1210/COMPSCI130L01C/1581611/1b0d6a/202101081000.LT347592.REV1-slides.m4v
+		return recordings.children[1].children[1].children[4].children[3].children[0].href
+
 	}
 	
 	})()
