@@ -7,7 +7,7 @@
 	// ###################
 	
 	const location = window.location.href
-	const startDate = new Date('01-6-2020')	//!@#!@#!@# CHANGE THIS WHENEVER YOU START A NEW SEMESTER!!!
+	const startDate = new Date('01-6-2021')	//!@#!@#!@# CHANGE THIS WHENEVER YOU START A NEW SEMESTER!!!
 	
 	// ###################
 	//	When extension button pressed
