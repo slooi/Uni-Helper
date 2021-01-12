@@ -134,7 +134,8 @@
 		// return: 1 - for the first week, 2 - for the second week. NOT zero indexed
 		const diff = getDate(i) - startDate
 		const days = diff/1000/60/60/24
-		return Math.floor(days/7) + 1
+		const adjustmentOnNonMondays = startDate.getDay()-1	// Eg: If classes start on a wednesday
+		return Math.floor((days+adjustmentOnNonMondays) / 7) + 1;
 	}
 	function getWatch(i){
 		// This is the preview video href
