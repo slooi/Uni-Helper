@@ -140,13 +140,13 @@
 	function getWatch(i){
 		// This is the preview video href
 		// Example: https://mediastore.auckland.ac.nz/2021/1210/COMPSCI130L01C/1581611/1b0d6a/202101081000.LT347592.REV1.preview
-		return recordings.children[1].children[1].children[0].children[0].href
+		return recordings.children[1].children[i].children[0].children[0].href
 
 	}
 	function getDownload(i){
 		// This is the download href
 		// Example: https://mediastore.auckland.ac.nz/2021/1210/COMPSCI130L01C/1581611/1b0d6a/202101081000.LT347592.REV1-slides.m4v
-		return recordings.children[1].children[1].children[4].children[3].children[0].href
+		return recordings.children[1].children[i].children[4].children[3].children[0].href
 
 	}
 	
