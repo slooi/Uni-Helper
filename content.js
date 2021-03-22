@@ -123,7 +123,9 @@
 	}
 
 	function getName(i) {
-		return recordings.children[1].children[i].children[1].innerText;
+		return recordings.children[1].children[0].children[0].children[1]
+			.innerText;
+		// return recordings.children[1].children[i].children[1].innerText;
 	}
 	function getDate(i) {
 		const rawDate = recordings.children[1].children[
@@ -137,9 +139,10 @@
 		return realDate;
 	}
 	function getTime(i) {
-		return recordings.children[1].children[i].children[2].innerText.split(
-			" "
-		)[1];
+		// return recordings.children[1].children[i].children[2].innerText.split(
+		// 	" "
+		// )[1];
+		return recordings.children[1].children[i].children[1].innerText;
 	}
 	function getDay(i) {
 		// return: 0 - sunday, 1 - monday, 6 - saturday
