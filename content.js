@@ -104,6 +104,7 @@
 		<p style="margin:0"><b>W</b> ${lectureData[2]} <b>D</b> ${lectureData[1]}</p>
 		<p style="margin:0">${lectureData[5]}</p>
 		<p style="margin:0">download | <a href="${lectureData[3]}"> watch</a></p>
+		<p style="margin:0">_________</p>
 		</div>`;
 	}
 
@@ -123,7 +124,7 @@
 	}
 
 	function getName(i) {
-		return recordings.children[1].children[0].children[0].children[1]
+		return recordings.children[1].children[i].children[0].children[1]
 			.innerText;
 		// return recordings.children[1].children[i].children[1].innerText;
 	}
